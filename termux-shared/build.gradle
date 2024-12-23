@@ -35,7 +35,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             ndkBuild {
-                cppFlags ''
+                cppFlags globalCPPFlags
             }
         }
     }
@@ -43,6 +43,9 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
