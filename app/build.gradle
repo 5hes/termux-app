@@ -62,7 +62,7 @@ android {
 
         externalNativeBuild {
             ndkBuild {
-                cFlags "-std=c11", "-Wall", "-Wextra", "-Werror", "-Os", "-fno-stack-protector", "-Wl,--gc-sections"
+                cFlags globalCFlags
             }
         }
 
@@ -78,7 +78,7 @@ android {
     }
 
     signingConfigs {
-        debug {
+        release {
             storeFile file('testkey_untrusted.jks')
             keyAlias 'alias'
             storePassword 'xrj45yWGLbsO7W0v'
@@ -89,12 +89,13 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources false // Reproducible builds
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+           signingConfig signingConfigs.release
         }
 
         debug {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 
