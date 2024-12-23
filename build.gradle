@@ -55,4 +55,4 @@ allprojects {
         ].join(' ')
     }
 }
-}
+
