@@ -14,4 +14,45 @@ allprojects {
         mavenCentral()
         maven { url "https://jitpack.io" }
     }
+
+    ext {
+        globalCFlags = [
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-O3",
+            "-flto",
+            "-fomit-frame-pointer",
+            "-funroll-loops",
+            "-Wl,--gc-sections",
+            "-DNDEBUG",
+            "-fstrict-aliasing",
+            "-fdata-sections",
+            "-ffunction-sections",
+            "-fPIC",
+            "-fno-exceptions",
+            "-fno-rtti",
+            "-fstack-protector",
+            "-Wl,--strip-all"
+        ].join(' ')
+       
+        globalCPPFlags = [
+            "-O3",
+            "-flto",
+            "-fomit-frame-pointer",
+            "-funroll-loops",
+            "-Wl,--gc-sections",
+            "-DNDEBUG",
+            "-fstrict-aliasing",
+            "-fdata-sections",
+            "-ffunction-sections",
+            "-fPIC",
+            "-fno-exceptions",
+            "-fno-rtti",
+            "-fstack-protector",
+            "-Wl,--strip-all"
+        ].join(' ')
+    }
+}
 }
