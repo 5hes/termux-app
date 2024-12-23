@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - update-gradle
       - 'github-releases/**'
   pull_request:
     branches:
