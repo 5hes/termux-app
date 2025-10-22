@@ -71,94 +71,9 @@ android {
         manifestPlaceholders.TERMUX_TASKER_APP_NAME = "Termux:Tasker"
         manifestPlaceholders.TERMUX_WIDGET_APP_NAME = "Termux:Widget"
 
-        // externalNativeBuild {
-        //     ndkBuild {
-        //         cFlags "-std=c11", "-Wall", "-Wextra", "-Werror", "-O3", "-fno-stack-protector", "-Wl,--gc-sections"
-        //     }
-        // }
-        
         externalNativeBuild {
             ndkBuild {
-                cFlags += [
-                    "-std=c11",
-                    
-                    // 极致优化级别
-                    "-Ofast",                   // 最高性能，无视标准合规
-                    "-O3",                      // 叠加优化
-                    "-ffast-math",              // 快速数学计算
-                    "-funsafe-math-optimizations", // 不安全的数学优化
-                    "-fno-signed-zeros",        // 忽略有符号零
-                    "-fno-trapping-math",       // 忽略数学陷阱
-                    "-fassociative-math",       // 允许关联重排
-                    
-                    // 骁龙8gen2特定优化
-                    "-march=armv9-a",           // ARMv9架构
-                    "-mcpu=cortex-x3",          // 骁龙8gen2的X3核心
-                    "-mtune=cortex-x3",         // 针对X3调优
-                    "-mfloat-abi=hard",         // 硬件浮点
-                    "-mfpu=neon-fp-armv8",      // 高级NEON
-                    "-mno-unaligned-access",    // 对齐访问（性能更好）
-                    "-moutline-atomics",        // ARMv8.1原子操作
-                    // 缓存优化
-                    "-mtls-dialect=desc",       // TLS描述符
-                    // 分支预测
-                    "-mbranch-protection=none", // 禁用分支保护（最大性能）
-                    // 向量扩展
-                    "-march=armv9-a+sha3+sm4+memtag+bf16+fp16fml+rand",
-                    // 内存预取
-                    "-mprefer-vector-width=256", // 偏好256位向量
-                    
-                    // 向量化优化
-                    "-ftree-vectorize",
-                    "-fvectorize", 
-                    "-fsimd-cost-model=unlimited",
-                    
-                    // 内联优化
-                    "-finline-functions",
-                    "-finline-limit=2147483647", // 无限内联
-                    "-finline-small-functions",
-                    
-                    // 链接时优化
-                    "-flto=full",
-                    
-                    // 代码生成优化
-                    "-fno-stack-protector",     // 移除栈保护
-                    "-fomit-frame-pointer",     // 省略帧指针
-                    "-fno-exceptions",          // 禁用异常（如果不用C++异常）
-                    "-fno-rtti",                // 禁用RTTI（如果不用）
-                    
-                    // 内存布局优化
-                    "-falign-functions=32",     // 函数对齐
-                    "-falign-loops=32",         // 循环对齐
-                    "-falign-jumps=32",         // 跳转对齐
-                    
-                    // 预测优化
-                    "-fpredictive-commoning",
-                    "-fprefetch-loop-arrays",
-            
-                    // 其他激进优化
-                    "-fno-semantic-interposition",
-                    "-fno-plt",                 // 直接PLT
-                    "-fno-common",
-                    
-                    // 警告关闭（避免干扰）
-                    "-w",                       // 关闭所有警告
-                    
-                    "-Wl,--gc-sections",        // 移除未使用代码
-                    "-Wl,--icf=all",            // 相同代码折叠
-                    "-Wl,--as-needed",
-                    "-Wl,-O3",                  // 链接时优化
-                    "-Wl,--relax",              // 放松检查
-                    "-Wl,--sort-common",        // 通用段排序
-                    "-Wl,--hash-style=gnu",     // 快速哈希
-                ]
-                
-                // C++特定优化（如果使用C++）
-                cppFlags += [
-                    "-std=c++20",               // 最新C++标准
-                    "-fno-threadsafe-statics",  // 禁用线程安全静态
-                    "-fvisibility-inlines-hidden",
-                ]
+                cFlags "-std=c11", "-Wall", "-Wextra", "-Werror", "-O3", "-fno-stack-protector", "-Wl,--gc-sections", "-Wl,-flto"
             }
         }
 
