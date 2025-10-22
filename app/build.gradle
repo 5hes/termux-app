@@ -97,6 +97,16 @@ android {
                     "-mtune=cortex-x3",         // 针对X3调优
                     "-mfloat-abi=hard",         // 硬件浮点
                     "-mfpu=neon-fp-armv8",      // 高级NEON
+                    "-mno-unaligned-access",    // 对齐访问（性能更好）
+                    "-moutline-atomics",        // ARMv8.1原子操作
+                    // 缓存优化
+                    "-mtls-dialect=desc",       // TLS描述符
+                    // 分支预测
+                    "-mbranch-protection=none", // 禁用分支保护（最大性能）
+                    // 向量扩展
+                    "-march=armv9-a+sha3+sm4+memtag+bf16+fp16fml+rand",
+                    // 内存预取
+                    "-mprefer-vector-width=256", // 偏好256位向量
                     
                     // 向量化优化
                     "-ftree-vectorize",
@@ -177,8 +187,6 @@ android {
 
     buildTypes {
         release {
-buildTypes {
-    release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
