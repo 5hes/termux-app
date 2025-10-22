@@ -36,7 +36,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             ndkBuild {
-                cppFlags '-O3, -Wl,-flto'
+                cppFlags "-O3", "-Wl,--gc-sections" ,"-Wl,-flto"
             }
         }
     }
