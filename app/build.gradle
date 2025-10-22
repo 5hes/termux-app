@@ -143,10 +143,7 @@ android {
                     
                     // 警告关闭（避免干扰）
                     "-w",                       // 关闭所有警告
-                ]
-                
-                // 链接器极致优化
-                ldLibs += [
+                    
                     "-Wl,--gc-sections",        // 移除未使用代码
                     "-Wl,--icf=all",            // 相同代码折叠
                     "-Wl,--as-needed",
